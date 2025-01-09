@@ -1,0 +1,8 @@
+.vscode/
+_gulp/node_modules/
+_gulp/package-lock.json/
+.DS_Store
+dist
+
+#node_modulesディレクトリを除外
+node_modules/
