@@ -1,0 +1,68 @@
+@use "global" as *;
+
+.page-contact__inner {
+  @include mq(md){
+    max-width: rem(750);
+  }
+}
+
+.page-contact__form {
+  margin-top: rem(45);
+  @include mq("md") {
+    // margin-top: rem(180);
+    }
+}
+
+.page-contact__button {
+  text-align: center;
+  margin-top: rem(33);
+
+  @include mq("md") {
+    margin-top: rem(40);
+  }
+}
+
+
+//ワードプレスお問い合わせボタン
+.wpcf7-form-control.wpcf7-submit.has-spinner {
+    color: $white;
+}
+
+span.wpcf7-spinner {
+  display: none;
+}
+
+.wpcf7-form-control.wpcf7-submit.has-spinner:hover {
+  color: $green;
+}
+
+.wpcf7-form-control.wpcf7-submit.has-spinner:hover span {
+  background: $green;
+}
+
+.wpcf7-form-control.wpcf7-submit.has-spinner::after {
+  background-color: $white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 100%;
+  transform: scale(0, 1); /* 初期状態では背景を隠す */
+  transform-origin: left top;
+  transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+  z-index: -1; /* ボタンの下に配置される */
+  border: rem(1) solid $green;
+}
+
+.wpcf7-form-control.wpcf7-submit.has-spinner:hover::after {
+  transform: scale(1, 1); /* ホバー時に背景全体を覆う */
+}
+
+.wpcf7-list-item {
+  display: block;
+}
+
+.wpcf7-list-item-label:not(:first-child) {
+  margin-top: rem(15);
+}

@@ -1,0 +1,221 @@
+@use "global" as *;
+
+.campaign__card {
+  box-shadow: rem(2) rem(2) rem(10) rgba(0, 0, 0, 0.25);
+  height: auto; //文字数増えた時の下揃え
+}
+
+.campaign__card a {
+  display: flex; //文字数増えた時の下揃え
+  flex-direction: column; //文字数増えた時の下揃え
+  height: 100%;
+  background-color: $white;
+  transition: all 0.3s ease 0s;
+}
+
+.campaign__card a:hover {
+  opacity: 0.6;
+}
+
+.campaign__card-img img {
+  width: 100%;
+  aspect-ratio: 280 / 188;
+  object-fit: cover;
+  @include mq("md") {
+    aspect-ratio: 333 / 223;
+  }
+}
+
+.campaign__card-body {
+  flex-grow: 1; //文字数増えた時の下揃え
+  display: flex;  //文字数増えた時の下揃え
+  flex-direction: column; //文字数増えた時の下揃え
+  box-sizing: border-box; /* パディングを含めた幅計算 */
+  padding: rem(16) rem(16) rem(24);
+  @include mq("md") {
+    padding: rem(24) rem(16) rem(40);
+  }
+}
+
+.campaign__card-body--blog {
+  @include mq("md") {
+    padding: rem(16) rem(23) rem(24);
+  }
+}
+
+.campaign__card-body--page {
+  @include mq("md") {
+    padding: rem(24) rem(24) rem(40);
+  }
+}
+
+.campaign__card-meta {
+  flex-grow: 1; //文字数増えた時の下揃え
+  padding-bottom: rem(8);
+  border-bottom: 1px solid $green;
+  text-align: left;
+}
+
+.campaign__card-meta--page {
+  @include mq("md") {
+  padding-bottom: rem(4);
+  }
+}
+
+.campaign__card-tag {
+  color: $green;
+  font-size: rem(12);
+  line-height: 1.8333;
+  border: 1px solid $green;
+  padding: rem(3) rem(11);
+  display: inline-block;
+  @include mq("md") {
+    padding: rem(6.5) rem(15);
+  }
+}
+
+.campaign__card-category {
+  font-size: rem(16);
+  font-weight: $normal;
+  color: $blue;
+  margin-top: rem(5);
+  line-height: 1.5;
+  @include mq("md") {
+    margin-top: rem(2);
+  }
+}
+
+.campaign__card-category--page {
+  @include mq("md") {
+    font-size: rem(24);
+  }
+}
+
+.campaign__card-category--blog {
+  text-align: center;
+}
+
+.campaign__card-contents {
+  margin-top: rem(9);
+  text-align: center;
+  @include mq("md") {
+    margin-top: rem(16);
+  }
+}
+
+.campaign__card-contents--page {
+  @include mq("md") {
+  margin-top: rem(30);
+  }
+}
+
+.campaign__card-title {
+  font-size: rem(14);
+  line-height: 1.5;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  color: $blue;
+  font-weight: $regular;
+  @include mq("md") {
+    font-size: rem(16);
+  }
+}
+
+.campaign__card-price--body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: rem(12);
+  gap: rem(15);
+}
+
+.campaign__card-original--price,
+.campaign__card-discounted--price {
+  font-weight: $bold;
+  font-family: $eng-second-font-family;
+  line-height: 1;
+  color: $blue;
+}
+
+.campaign__card-original--price {
+  font-size: rem(20);
+  position: relative;
+  @include mq("md") {
+    font-size: rem(24);
+  }
+}
+
+.campaign__card-original--price-blog {
+  @include mq("md") {
+  font-size: rem(20);
+  }
+}
+
+.campaign__card-original--price:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: rem(3);
+  background-color: #c94800;
+  top: 50%;
+  left: 0;
+}
+
+.campaign__card-discounted--price {
+  font-size: rem(32);
+  color: $green;
+  @include mq("md") {
+    font-size: rem(40);
+  }
+}
+
+.campaign__card-discounted--price-blog {
+  @include mq("md") {
+    font-size: rem(32);
+    margin-left: rem(16);
+  }
+}
+
+//page-campaign
+
+.campaign__card-text {
+  font-size: rem(16);
+  font-weight: $regular;
+  color: $blue;
+  margin-top: rem(24);
+  text-align: left;
+}
+
+.campaign__card-date {
+  font-family: $eng-second-font-family;
+  font-size: rem(16);
+  font-weight: $bold;
+  color: $green;
+  margin-top: rem(25);
+}
+
+.campaign__card-contact {
+  font-size: rem(14);
+  font-weight: $regular;
+  color: $green;
+  margin-top: rem(7);
+}
+
+.campaign__card-button {
+  margin-top: rem(16);
+}
+
+.campaign__card-img.campaign__card-img--page img {
+  aspect-ratio: 294 / 188;
+}
+
+
+//page-blog
+.campaign__card--page:first-child {
+  margin-top: rem(24);
+}
+
+.campaign__card--page:not(:first-child) {
+  margin-top: rem(20);
+}

@@ -1,0 +1,130 @@
+@use "global" as *;
+
+.price__inner {
+  max-width: rem(600);
+  position: relative;
+}
+
+.price__inner::before {
+  @include mq("md") {
+    content: "";
+    position: absolute;
+    width: rem(437); 
+    height: rem(201);
+    top: rem(840);
+    left: calc(50% - min(48.5vw, rem(620))); 
+    background-image: url(../images/common/Price-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 100;
+  }
+}
+
+.price__body {
+  width: 100%;
+  margin-top: rem(24);
+  @include mq("md") {
+    margin-top: rem(40);
+    text-align: center;
+  }
+}
+
+.price__box {
+  @include mq("md"){
+      display: flex;
+      flex-direction: row-reverse;
+      gap: rem(90);
+      padding: 0 rem(2);
+      aspect-ratio: 1.443;
+  }
+}
+
+.price__img {
+  aspect-ratio: 345 / 227;
+  @include mq("md"){
+    aspect-ratio: 492 / 746;
+  }
+}
+
+.price__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price__content {
+  margin-top: rem(40);
+  width: 100%;
+  @include mq("md") {
+    margin-top: rem(1);
+  }
+}
+
+.price__item {
+  display: flex;
+  flex-direction: column;
+  // margin-top: rem(-3);
+  width: 100%;
+  @include mq("md") {
+    // margin-top: rem(20);
+  }
+}
+
+.price__item:not(:first-child) {
+  margin-top: rem(41);
+  @include mq("md") {
+    margin-top: rem(38);
+  }
+}
+
+
+.price__heading {
+  width: 100%;
+  font-size: rem(16);
+  font-weight: $bold;
+  color: $blue;
+  text-align: left;
+  border-bottom: 1px solid $green;
+  padding-bottom: rem(3);
+}
+
+.price__item-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(10); 
+  @include mq("md") {
+    margin-top: rem(8); 
+  }
+}
+
+.price__text,
+.price__price-menu {
+  font-size: rem(14);
+  font-weight: $regular;
+  color: $blue;
+  @include mq("md") {
+    font-size: rem(16);
+  }
+}
+
+.price__text {
+  text-align: left;
+}
+
+.price__price-menu {
+  margin-left: rem(10);
+}
+
+.price__button {
+  text-align: center;
+  margin-top: rem(40);
+  @include mq("md"){
+      margin-top: rem(80);
+  }
+}
+
+
+
+

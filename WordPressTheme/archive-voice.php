@@ -85,7 +85,8 @@
                   } elseif (has_excerpt()) {
                     the_excerpt();
                   } else {
-                    the_content();
+                    // 投稿の冒頭部分を切り取る
+                    echo wp_trim_words(get_the_content(), 200, '...');
                   }
                   ?>
                 </p>

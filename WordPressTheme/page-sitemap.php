@@ -25,18 +25,31 @@
               <div class="page-sitemap__left">
                 <div class="page-sitemap__pc">
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-campaign.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_post_type_archive_link('campaign')); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">キャンペーン</p>
                     </a>
                     <div class="page-sitemap-link__details">
-                      <a href="#" class="page-sitemap-link__detail">ライセンス取得</a>
-                      <a href="#" class="page-sitemap-link__detail">貸切体験ダイビング</a>
-                      <a href="#" class="page-sitemap-link__detail">ナイトダイビング</a>
+                    <?php
+                    //　カスタム投稿タイプ『campaign』にカテゴリ(タクソノミー)が追加される度に、そのタクソノミーの一覧ページへのリンクが生成されるようにする。
+                      // カスタムタクソノミーのカテゴリを取得
+                      $terms = get_terms(array(
+                        'taxonomy' => 'campaign_category',
+                        'hide_empty' => false,
+                      ));
+
+                      // 取得したカテゴリが存在する場合、リンクを生成
+                      if (!empty($terms) && !is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                          // 各カテゴリのリンクを出力
+                          echo '<a href="' . esc_url(get_term_link($term)) . '" class="footer-link__detail">' . esc_html($term->name) . '</a>';
+                        }
+                      }
+                    ?>
                     </div>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-about.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('about'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">私たちについて</p>
                     </a>
@@ -44,18 +57,18 @@
                 </div>
                 <div class="page-sitemap__pc">
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-information.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">ダイビング情報</p>
                     </a>
                     <div class="page-sitemap-link__details">
-                      <a href="page-information.html?tab=license-lecture" class="page-sitemap-link__detail">ライセンス講習</a>
-                      <a href="page-information.html?tab=intro-diving" class="page-sitemap-link__detail">体験ダイビング</a>
-                      <a href="page-information.html?tab=fun-diving" class="page-sitemap-link__detail">ファンダイビング</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>?tab=license-lecture" class="footer-link__detail">ライセンス講習</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>?tab=intro-diving" class="footer-link__detail">体験ダイビング</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>?tab=fun-diving" class="footer-link__detail">ファンダイビング</a>
                     </div>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-blog.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('blog'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">ブログ</p>
                     </a>
@@ -65,44 +78,45 @@
               <div class="page-sitemap__right">
                 <div class="page-sitemap__pc">
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-voice.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_post_type_archive_link('voice')); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">お客様の声</p>
                     </a>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-price.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('price'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">料金一覧</p>
                     </a>
                     <div class="page-sitemap-link__details">
-                      <a href="page-price.html#license-course" class="page-sitemap-link__detail">ライセンス講習</a>
-                      <a href="page-price.html#trial-diving" class="page-sitemap-link__detail">体験ダイビング</a>
-                      <a href="page-price.html#diving-fun" class="page-sitemap-link__detail">ファンダイビング</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>?tab=license-lecture" class="footer-link__detail">ライセンス講習</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>?tab=intro-diving" class="footer-link__detail">体験ダイビング</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('information'))); ?>?tab=fun-diving" class="footer-link__detail">ファンダイビング</a>
+                      <a href="<?php echo esc_url(get_permalink(get_page_by_path('price'))); ?>#special-diving" class="footer-link__detail">スペシャルダイビング</a>
                     </div>
                   </div>
                 </div>
                 <div class="page-sitemap__pc">
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-faq.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('faq'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">よくある質問</p>
                     </a>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-privacy-policy.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('privacypolicy'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">プライバシー<br>ポリシー</p>
                     </a>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-terms-of-service.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('terms-of-service'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">利用規約</p>
                     </a>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
-                    <a href="page-contact.html" class="page-sitemap-link__main">
+                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>" class="page-sitemap-link__main">
                       <div class="page-sitemap-link__icon"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode2.svg" alt="ヒトデのアイコン"></div>
                       <p class="page-sitemap-link__text">お問い合わせ</p>
                     </a>

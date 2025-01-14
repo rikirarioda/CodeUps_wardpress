@@ -1,0 +1,32 @@
+@use "global" as *;
+
+.page-blog__inner {
+  max-width: rem(600);
+}
+
+.page-blog__wraps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include mq("md") {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.page-blog__container--blog {
+  width: 95%;
+}
+
+.page-blog__cards {
+  display: grid;
+  gap: rem(39);
+  grid-template-columns: repeat(1, 1fr);
+  @include mq(md){
+    row-gap: rem(83);
+    column-gap: rem(50);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+

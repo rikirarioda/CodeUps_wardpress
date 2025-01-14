@@ -1,0 +1,119 @@
+@use "global" as *;
+
+.voice-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease 0s;
+  width: 100%;
+  background-color: $white;
+  padding: rem(0) rem(16) rem(24) rem(16);
+  box-shadow: rem(2) rem(2) rem(10) rgba(0, 0, 0, 0.25);
+
+  @include mq("md") {
+    width: 100%;
+    padding: rem(24);
+  }
+}
+
+.voice-card:hover {
+  opacity: 0.6;
+}
+
+.voice-card__box {
+  margin-top: rem(15);
+  display: flex;
+  @include mq("md") {
+    margin-top: rem(0);
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.voice-card__item-information {
+  font-size: rem(12);
+  font-weight: $regular;
+}
+
+.voice-card__item-tag {
+  color: $green;
+  font-size: rem(12);
+  line-height: 1;
+  font-weight: $regular;
+  border: 1px solid $green;
+  padding: rem(8) rem(10);
+  display: inline-block;
+  text-align: left;
+  @include mq("md") {
+    padding: rem(9) rem(15);
+    margin-left: auto;
+  }
+}
+
+.voice-card__items {
+  flex-grow: 1;
+  margin-top: rem(24);
+  margin-right: rem(13);
+  @include mq("md") {
+    max-width: none;
+  }
+}
+
+.voice-card__wrap {
+  display: block;
+  text-align: left;
+  margin-top: rem(-21);
+  @include mq("md") {
+    display: flex;
+    align-items: flex-end;
+    margin-top: rem(-6);
+  }
+}
+
+.voice-card__item-title {
+  font-size: rem(16);
+  font-weight: $normal;
+  color: $blue;
+  border-bottom: 1px solid $green;
+  margin-top: rem(3);
+  text-align: left;
+  word-break: break-word;
+
+  @include mq("md") {
+    font-size: rem(24);
+    font-weight: $normal;
+    margin-top: rem(9);
+  }
+}
+
+.voice-card__item-img {
+  flex-shrink: 0;
+  width: rem(151);
+  height: auto;
+  @include mq("md") {
+    width: rem(180);
+  }
+}
+
+.voice-card__item-img img {
+  width: 100%;
+  aspect-ratio: 151 / 117;
+  object-fit: cover;
+
+  @include mq("md") {
+    aspect-ratio: 180 / 140;
+  }
+}
+
+.voice-card__item-text {
+  font-size: rem(16);
+  font-weight: $regular;
+  color: $blue;
+  font-family: $base-font-family;
+  margin-top: rem(15);
+  text-align: left;
+  @include mq("md") {
+    margin-top: rem(39);
+  }
+}
+

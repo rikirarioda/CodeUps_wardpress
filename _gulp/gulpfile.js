@@ -177,8 +177,8 @@ const browserSyncOption = {
   notify: false,
   // server: "../dist/", // ローカルサーバーのルートディレクトリ
   // WordPressの場合は↓を有効にする。その場合、↑(server)はコメントアウトする。
-  proxy: "http://wp201226.wpx.jp/codeups_wp/", // ローカルサーバーのURL（WordPress）
-};
+  proxy: "http://codeupswordpress.local", // ローカルサーバーのURL（WordPress）
+}
 const browserSyncFunc = () => {
   browserSync.init(browserSyncOption);
 };

@@ -38,7 +38,7 @@
 
 
 
-  <a href="#" class="back-to-top js-back-to-top">
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="back-to-top js-back-to-top">
       <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/Contact-icon.svg" alt="トップへ戻るボタン">
     </a>
     <footer class="footer layout-footer <?php if (is_404()) echo 'layout-page-404--footer'; ?>">
@@ -139,6 +139,7 @@
               <a href="<?php echo esc_url(get_permalink(get_page_by_path('price'))); ?>#license-course" class="footer-link__detail">ライセンス講習</a>
               <a href="<?php echo esc_url(get_permalink(get_page_by_path('price'))); ?>#trial-diving" class="footer-link__detail">体験ダイビング</a>
               <a href="<?php echo esc_url(get_permalink(get_page_by_path('price'))); ?>#diving-fun" class="footer-link__detail">ファンダイビング</a>
+              <a href="<?php echo esc_url(get_permalink(get_page_by_path('price'))); ?>#special-diving" class="footer-link__detail">スペシャルダイビング</a>
             </div>
           </div>
         </div>
@@ -152,7 +153,7 @@
             </a>
           </div>
           <div class="footer__link footer-link">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('site-map'))); ?>" class="footer-link__main">
+            <a href="<?php echo esc_url(get_permalink(get_page_by_path('sitemap'))); ?>" class="footer-link__main">
               <div class="footer-link__icon">
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode.svg" alt="ヒトデのアイコン">
               </div>
@@ -160,7 +161,7 @@
             </a>
           </div>
           <div class="footer__link footer-link">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('privacy-policy'))); ?>" class="footer-link__main">
+            <a href="<?php echo esc_url(get_permalink(get_page_by_path('privacypolicy'))); ?>" class="footer-link__main">
               <div class="footer-link__icon">
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/hitode.svg" alt="ヒトデのアイコン">
               </div>

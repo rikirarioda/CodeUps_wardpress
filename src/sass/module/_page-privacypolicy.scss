@@ -1,0 +1,47 @@
+@use "global" as *;
+
+.page-privacypolicy__inner {
+  @include mq("md") {
+    max-width: rem(865);
+  }
+}
+
+.page-privacypolicy__title {
+  font-size: rem(24);
+  font-weight: $regular;
+  color: $blue;
+  font-family: $base-font-family;
+
+  @include mq("md") {
+    font-size: rem(32);
+  }
+}
+
+// .page-privacypolicy__box {
+//   margin-top: rem(40);
+// }
+
+// .page-privacypolicy__box div {
+//   margin-top: rem(32);
+// }
+
+.page-privacypolicy__box p {
+  font-size: rem(16);
+  line-height: 2;
+  margin-top: rem(32);
+  list-style: decimal;
+}
+
+//ワードプレス化 Terms of Service共通
+.wp-block-list {
+  padding-left: rem(20);
+}
+
+.wp-block-list li {
+  list-style: decimal;
+  margin-top: rem(10);
+}
+
+.wp-block-list ol {
+  margin-top: rem(32);
+}

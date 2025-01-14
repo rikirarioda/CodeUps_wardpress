@@ -1,0 +1,12 @@
+@use "global" as *;
+
+.layout-price {
+  background-color: $skyblue;
+  margin-top: rem(84);
+  padding: rem(89) rem(0);
+  @include mq("md") {
+    margin-top: rem(140);
+    padding: rem(75) rem(0);
+    position: relative;
+  }
+}

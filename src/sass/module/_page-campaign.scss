@@ -1,0 +1,32 @@
+@use "global" as *;
+
+.page-campaign__inner {
+  max-width: rem(600);
+}
+
+.page-campaign__contents {
+  width: 100%;
+  text-align: center;
+  margin-top: rem(40);
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  gap: rem(40);
+
+  @include mq("md") {
+    width: 100%;
+    gap: rem(40);
+    row-gap: rem(80);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.page-campaign__content {
+  max-width: rem(280);
+  box-shadow: rem(2) rem(2) rem(10) rgba(0, 0, 0, 0.25);
+
+  @include mq("md") {
+    max-width: rem(520);
+  }
+}
+

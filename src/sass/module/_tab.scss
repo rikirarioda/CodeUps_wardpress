@@ -1,0 +1,149 @@
+@use "global" as *;
+
+.tab {
+  width: 100%;
+}
+
+.tab__list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(20);
+  @include mq("md") {
+    gap: rem(90);
+  }
+}
+
+.tab__button {
+  transition: 0.3s background-color;
+  width: rem(102);
+  padding: rem(9) rem(0);
+  cursor: pointer;
+  background-color: $skyblue;
+  color: $green;
+  box-shadow: rem(2) rem(2) rem(10) rgba(0, 0, 0, 0.25);
+  font-size: rem(14);
+  font-weight: $regular;
+
+  @include mq("md") {
+    width: rem(300);
+    padding: rem(13) rem(0);
+    font-size: rem(24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.tab__button.is-active {
+  pointer-events: none;
+}
+
+.tab__button:hover,
+.tab__button.is-active {
+  color: $white;
+  background-color: $green;
+}
+
+.tab__button span::before {
+  content: "";
+  display: inline-block;
+  width: rem(64);
+  aspect-ratio: 1 / 1;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  mask-size: cover;
+  background-color: $green;
+  // transition: 0.3s background-color;
+  margin-right: rem(8);
+}
+
+.tab__button:hover span::before,
+.tab__button.is-active span::before {
+  background-color: $white;
+}
+
+.tab__example-mask--white span::before {
+  mask-image: url(../images/common/Information-p-icon1.svg);
+}
+
+.tab__example-mask--green span::before {
+  mask-image: url(../images/common/Information-p-icon2.svg);
+}
+
+.tab__example-mask--green2 span::before {
+  mask-image: url(../images/common/Information-p-icon3.svg);
+}
+
+.tab__button.is-active img{
+  background-color: $green;
+}
+
+.tab__contents {
+  margin-top: rem(19);
+  @include mq("md") {
+    margin-top: rem(25);
+  }
+}
+
+.tab__content {
+  display: none; //その他のアイテムは非表示
+  padding: rem(17) rem(20) rem(20) rem(20);
+  border: rem(1) solid $green;
+}
+
+.tab__content img {
+  aspect-ratio: 297 / 189;
+  @include mq("md") {
+    width: 48%;
+  }
+}
+
+.tab__item {
+  @include mq("md") {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.tab__content.is-active {
+  display: block; //表示
+}
+
+.tab__wrap {
+  width: 100%;
+  @include mq("md") {
+  margin-right: rem(40);
+  }
+}
+
+.tab__title {
+  font-size: rem(24);
+  font-weight: $bold;
+  border-bottom: rem(1) solid $green;
+  width: 100%;
+  display: inline-block;
+}
+
+.tab__text {
+  font-size: rem(16);
+  font-weight: $regular;
+  margin-top: rem(8);
+  letter-spacing: rem(0.2);
+
+  @include mq("md") {
+  letter-spacing: rem(0.5);
+  }
+}
+
+.tab__img {
+  margin-top: rem(10);
+  @include mq("md") {
+    margin-top: rem(0);
+  }
+}
+
+
+

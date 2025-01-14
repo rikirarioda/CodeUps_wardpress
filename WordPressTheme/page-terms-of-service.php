@@ -8,7 +8,7 @@
             <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/Site_MAP-p-MV-sp.jpg" media="(max-width: 767px)">
             <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/Site_MAP-p-MV.jpg" alt="海の中で沢山の魚が泳いでいる様子">
           </picture>
-          <h1 class="page-mv__title">Privacy Policy</h1>
+          <h1 class="page-mv__title">Terms of Service</h1>
         </div>
       </div>
     </div>

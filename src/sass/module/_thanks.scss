@@ -1,0 +1,52 @@
+@use "global" as *;
+
+
+.thanks {
+  padding-bottom: rem(49);
+
+  @include mq(md) {
+    padding-bottom: 0;
+  }
+}
+
+.thanks__inner {
+  position: relative;
+}
+
+.thanks__inner::before {  // 魚の群れ
+  content: "";
+  position: absolute;
+  background-image: url(../images/common/gallery-icon.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: rem(109);
+  height: rem(50);
+  transform: scaleX(-1);  // 左右反転。
+  left: calc(50% - min(48.5vw, rem(670))); 
+  left: -50;
+  top: 1%;
+  z-index: -1;
+  @include mq("md") {
+    width: rem(301);
+    height: rem(138);
+    left: calc(50% - min(48.5vw, rem(670))); 
+    left: -50;
+    top: -50%;
+  }
+}
+
+.thanks__text-top,
+.thanks__text-bottom {
+  text-align: center;
+  font-size: rem(16);
+  font-weight: $normal;
+  line-height: normal;
+}
+
+.thanks__text-top {
+  line-height: 1.125;
+}
+
+.thanks__text-bottom {
+  margin-top: rem(40);
+}

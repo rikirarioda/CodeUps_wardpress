@@ -237,7 +237,9 @@ a {
 }
 
 .layout-price {
+	background-color: #DDF0F1;
 	margin-top: 5.25rem;
+	padding: 5.5625rem 0rem;
 }
 
 .layout-page-thanks {
@@ -838,6 +840,7 @@ a {
 }
 
 .campaign__card-body {
+	box-sizing: border-box; /* パディングを含めた幅計算 */
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
@@ -890,6 +893,7 @@ a {
 .campaign__card-price--body {
 	align-items: flex-end;
 	display: flex;
+	gap: 0.9375rem;
 	justify-content: center;
 	margin-top: 0.75rem;
 }
@@ -920,7 +924,6 @@ a {
 .campaign__card-discounted--price {
 	color: #408F95;
 	font-size: 2rem;
-	margin-left: 1.0625rem;
 }
 
 .campaign__card-text {
@@ -960,6 +963,12 @@ a {
 
 .campaign__card--page:not(:first-child) {
 	margin-top: 1.25rem;
+}
+
+.campaign__cards {
+	height: auto;
+	max-width: 17.5rem;
+	width: 100%;
 }
 
 .campaign__inner.inner {
@@ -2230,6 +2239,7 @@ a {
 	justify-items: center;
 	margin-top: 2.5rem;
 	text-align: center;
+	width: 100%;
 }
 
 .page-campaign__content {
@@ -3003,6 +3013,7 @@ span.wpcf7-spinner {
 	top: 1%;
 	transform: scaleX(-1);
 	width: 6.8125rem;
+	z-index: -1;
 }
 
 .thanks__text-top,
@@ -3273,6 +3284,7 @@ html {
 
 .layout-price {
 	margin-top: 8.75rem;
+	padding: 4.6875rem 0rem;
 	position: relative;
 }
 
@@ -3511,12 +3523,15 @@ html {
 
 .campaign__card-discounted--price {
 	font-size: 2.5rem;
-	margin-left: 2.8125rem;
 }
 
 .campaign__card-discounted--price-blog {
 	font-size: 2rem;
 	margin-left: 1rem;
+}
+
+.campaign__cards {
+	max-width: 20.8125rem;
 }
 
 .campaign-swiper {
@@ -3917,6 +3932,7 @@ html {
 	gap: 2.5rem;
 	grid-template-columns: repeat(2, 1fr);
 	row-gap: 5rem;
+	width: 100%;
 }
 
 .page-campaign__content {
@@ -4169,7 +4185,7 @@ html {
 	height: 8.625rem;
 	left: calc(50% - min(48.5vw, 41.875rem));
 	left: -50;
-	top: -9%;
+	top: -50%;
 	width: 18.8125rem;
 }
 

@@ -105,7 +105,7 @@
           $price_list4 = SCF::get('price_list4'); 
           ?>
           <?php if (!empty($price_title4) && !empty($price_list4)): ?>
-            <div class="price-content__item price-table">
+            <div id="special-diving" class="price-content__item price-table">
               <div class="price-table__heading">
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/Price.svg" alt="ヒトデのアイコン">
                 <?php echo esc_html($price_title4); ?>

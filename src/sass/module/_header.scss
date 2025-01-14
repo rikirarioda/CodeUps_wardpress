@@ -1,0 +1,47 @@
+@use "global" as *;
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $blue;
+  background-color: rgba(13,41,54,0.68);
+  height: rem(80);
+  @include mq("md") {
+    height: rem(90);
+  }
+}
+
+.header__inner {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(0) rem(12);
+  @include mq("md") {
+    padding: rem(0) rem(38);
+  }
+}
+
+.header__logo {
+  width: rem(106);
+  position: relative;
+  z-index: 9999;
+  @include mq("md") {
+    width: rem(138);
+  }
+}
+
+.header__pc-nav {
+  height: inherit;
+  @include mq("md") {
+    display: block;
+  }
+}
+
+
+
+
+

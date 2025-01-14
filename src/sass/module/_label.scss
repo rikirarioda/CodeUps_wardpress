@@ -1,0 +1,43 @@
+@use "global" as *;
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.label::before {
+  content: "";
+  background-color: $green;
+  width: rem(8);
+  height: rem(50);
+  margin-right: rem(16);
+}
+
+.label__title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.label__title h2 {
+  font-size: rem(24);
+  font-family: $base-font-family;
+  font-weight: $regular;
+  
+  display: contents;
+}
+
+.label__title h2::before {
+  background-image: url(../images/common/Blog-p-icon.svg);
+  content: " "; /* 空白を指定 */
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: rem(50);
+  height: rem(50); /* 高さを追加 */
+  display: inline-block; /* インラインブロックにして表示 */
+  margin-right: rem(10);
+}
+
+
+
+

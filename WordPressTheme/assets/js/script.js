@@ -43,7 +43,7 @@ jQuery(function ($) {
   var campaign_swiper = new Swiper(".js-campaign-swiper", {
     loop: true,
     spaceBetween: 24,
-    slidesPerView: 1.27,
+    slidesPerView: "auto",
     speed: 3000,
     autoplay: {
       delay: 2000,
@@ -51,15 +51,22 @@ jQuery(function ($) {
     },
     breakpoints: {
       768: {
-        slidesPerView: 3.45,
-        spaceBetween: 40
-      }
+        slidesPerView: "auto",
+        spaceBetween: 40,
+        width: 333,
+      },
+    },
+    autoplay: {
+      delay: 1000,
+      disableOnInteraction: false,
     },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev"
     }
   });
+
+
 
   /* -------------------------------------------------------------------------------- */
 //アニメーション 写真の前に青の要素が出てくる実装
@@ -303,7 +310,8 @@ box.each(function(){
     });
   });
 
-  //別ページに飛ぶ　料金一覧ページ
+  /* -------------------------------------------------------------------------------- */
+  //別ページに飛ぶ 料金一覧ページ //クラス名にIDを設定
   $(window).on('load', function () {
     // ページが読み込まれたときに、URLにハッシュがあるかチェック
     if (window.location.hash) {

@@ -1,0 +1,77 @@
+@use "global" as *;
+
+.page-blog-detail__title {
+  border-bottom: rem(1) solid $green;
+  margin-top: rem(6);
+  font-size: rem(24);
+  font-weight: $normal;
+  @include mq("md") {
+    font-size: rem(32);
+  }
+}
+
+.page-blog-detail__img {
+  margin-top: rem(24);
+
+  @include mq("md") {
+  margin-top: rem(40);
+  }
+}
+
+.page-blog-detail__img img {
+  aspect-ratio: 175 / 117;
+}
+
+.page-blog-detail__container p {
+  margin-top: rem(25);
+  font-size: rem(16);
+  font-weight: $regular;
+
+  @include mq("md") {
+    margin-top: rem(40);
+  }
+}
+
+.page-blog-detail__container img {
+  aspect-ratio: 175 / 117;
+  margin-top: rem(24);
+
+  @include mq("md") {
+  margin-top: rem(40);
+  }
+}
+
+.page-blog-detail__container ul {
+  margin-top: rem(26);
+
+
+  @include mq("md") {
+    margin-top: rem(30);
+  }
+}
+
+
+.page-blog-detail__container li:not(:first-child) {
+  margin-top: rem(4);
+}
+
+.page-blog-detail__container li {
+  display: block; /* リストアイテムをブロック要素に設定 */
+  position: relative; /* ::beforeの絶対配置の基準にするために相対配置を設定 */
+  padding-left: rem(27); /* 左側にアイコンのスペースを確保 */
+  font-size: rem(16);
+  font-weight: $regular;
+  margin-top: rem(4);
+}
+
+.page-blog-detail__container li::before {
+  content: url(../images/common/hitode2.svg);
+  display: block; /* ブロック要素として表示 */
+  position: absolute; /* 絶対配置で親要素に固定 */
+  top: 0; /* リストアイテムの上端に揃える */
+  left: 0; /* リストアイテムの左端に揃える */
+  width: rem(18); /* 固定幅 */
+  height: rem(18); /* 固定高さ */
+  margin-top: rem(4); /* アイコンとテキストの間に少し余白を追加 */
+}
+

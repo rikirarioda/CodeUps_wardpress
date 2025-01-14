@@ -25,9 +25,6 @@
           <!-- ALLタブ -->
           <a class="category-button__tab <?php if (!is_tax('campaign_category')) echo 'is-active'; ?>" href="<?php echo get_post_type_archive_link('campaign'); ?>">ALL</a>
 
-
-
-
             <!-- 他のタクソノミー -->
             <?php
             $terms = get_terms([
@@ -94,7 +91,7 @@
               <p>該当する投稿がありません。</p>
             <?php endif; ?>
             <!-- ループ終了 -->
-          </ul>
+        </ul>
 
       </div>
     </div>

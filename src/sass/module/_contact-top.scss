@@ -1,0 +1,134 @@
+@use "global" as *;
+
+.contact-top__inner {
+  max-width: rem(600);
+  position: relative;
+}
+
+.contact-top__inner::before {
+  content: "";
+  position: absolute;
+  background-image: url(../images/common/gallery-icon.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: rem(109);
+  height: rem(50);
+  right: calc(50% - min(48.5vw, rem(670))); 
+  right: -50;
+  top: 1%;
+  @include mq("md") {
+    width: rem(301);
+    height: rem(138);
+    right: calc(50% - min(48.5vw, rem(670))); 
+    right: -50;
+    top: -9%;
+  }
+}
+
+.contact-top__contents {
+  text-align: center;
+  position: relative;
+  @include mq("md"){
+      display: flex;
+      box-shadow: rem(4) rem(4) rem(10) rem(4) rgba($color: #000, $alpha: 0.25);
+      align-items: center;
+      padding: rem(70) 0;
+  }
+}
+
+.contact-top__map {
+  @include mq("md"){
+      border-right: 1px solid $green;
+      margin-inline: auto;
+      width: 55%;
+      padding: 0 rem(50);
+  }
+}
+
+.contact-top__logo-wrap {
+  border-bottom: 1px solid $green;
+}
+
+
+.contact-top__logo-wrap img {
+  margin-top: rem(25);
+  display: inline-block;
+  text-align: center;
+}
+
+.contact-top__text {
+  flex: 1;
+  margin-top: rem(14);
+  font-size: rem(16);
+  font-weight: $regular;
+  font-family: $base-font-family;
+  @include mq("md") {
+    margin-top: rem(20);
+    text-align: left;
+    line-height: 1.8;
+  }
+}
+
+.contact-top__sub-text {
+  margin-top: rem(6);
+  font-size: rem(14);
+  font-weight: $regular;
+  color: $green;
+  font-family: $base-font-family;
+
+  @include mq("md") {
+    margin-top: rem(10);
+  }
+}
+
+.contact-top__logo {
+  width: rem(174);
+  @include mq("md"){
+      width: rem(205);
+  }
+}
+
+.contact-top__text-wrap {
+  @include mq("md"){
+      margin-top: rem(24);
+      display: flex;
+      gap: rem(21);
+      justify-content: space-between;
+  }
+}
+
+.contact-top__text {
+  color: $blue;
+  font-weight: $regular;
+  @include mq("md"){
+      text-align: left;
+  }
+}
+
+.contact-top__text p:not(:first-child) {
+  margin-top: rem(3);
+}
+
+.contact-top__text-wrap iframe {
+  margin-top: rem(16);
+  aspect-ratio: 295 / 160;
+  @include mq("md"){
+      aspect-ratio: 273 / 148;
+      margin-top: 0;
+      max-width: rem(273);
+  }
+}
+
+.contact-top__title-wrap {
+  margin-top: rem(40);
+  @include mq("md"){
+      margin-top: 0;
+      margin-inline: auto;
+      width: 45%;
+  }
+}
+
+.contact-top__button {
+  text-align: center;
+  margin-top: rem(40);
+}
