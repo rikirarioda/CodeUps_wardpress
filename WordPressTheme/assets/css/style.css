@@ -665,15 +665,15 @@ a {
 	margin: 0 0.25rem; /* スペーサーの左右に適切なマージンを設定 */
 }
 
-.breadcrumb__text--page404 {
+.breadcrumb--page404 {
 	color: #FFFFFF;
 }
 
-.breadcrumb__text--page404 a {
+.breadcrumb--page404 a {
 	color: #FFFFFF;
 }
 
-.breadcrumb__text--page404 {
+.breadcrumb--page404 {
 	color: #FFFFFF;
 }
 

@@ -50,44 +50,41 @@
     </div>
 
     <!--  Gallery -->
-    <section class="gallery layout-gallery">
-      <div class="gallery__inner inner">
-        <div class="gallery__title">
-          <div class="title">
-            <p class="title__main">Gallery</p>
-            <h2 class="title__sub">フォト</h2>
+    <?php $fields = SCF::get('about-page'); // SCF グループ名: about-page?>
+    <?php if (!empty($fields)): // フィールドが空でない場合のみセクションを表示 ?>
+      <section class="gallery layout-gallery">
+        <div class="gallery__inner inner">
+          <div class="gallery__title">
+            <div class="title">
+              <p class="title__main">Gallery</p>
+              <h2 class="title__sub">フォト</h2>
+            </div>
+          </div>
+          <div class="gallery__contents js-modal-open">
+            <?php foreach ($fields as $field): ?>
+              <?php 
+              // 画像IDを取得
+              $image_id = $field['gallery-img']; 
+              $image_url = wp_get_attachment_url($image_id); // IDから画像URLを取得
+              ?>
+              <?php if ($image_url): ?>
+                <img 
+                  src="<?php echo esc_url($image_url); ?>" 
+                  alt="ギャラリー画像" 
+                  class="gallery__img js-modal-open" 
+                  data-img-src="<?php echo esc_url($image_url); ?>">
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </div>
+
+          <div class="gallery__modal js-modal">
+            <div class="modal__body">
+              <img src="#" alt="拡大画像" class="gallery__img js-modal-img">
+            </div>
           </div>
         </div>
-            <?php
-            $fields = SCF::get('about-page'); // SCF グループ名: about-page
-            ?>
-            <?php if (!empty($fields)): ?>
-              <div class="gallery__contents js-modal-open">
-                <?php foreach ($fields as $field): ?>
-                  <?php 
-                  // 画像IDを取得
-                  $image_id = $field['gallery-img']; 
-                  $image_url = wp_get_attachment_url($image_id); // IDから画像URLを取得
-                  ?>
-                  <?php if ($image_url): ?>
-                    <img 
-                      src="<?php echo esc_url($image_url); ?>" 
-                      alt="ギャラリー画像" 
-                      class="gallery__img js-modal-open" 
-                      data-img-src="<?php echo esc_url($image_url); ?>">
-                  <?php endif; ?>
-                <?php endforeach; ?>
-              </div>
+      </section>
+    <?php endif; // セクション表示条件終了 ?>
 
-              <div class="gallery__modal js-modal">
-                <div class="modal__body">
-                  <img src="#" alt="拡大画像" class="gallery__img js-modal-img">
-                </div>
-              </div>
-              <?php else: ?>
-                <p>ギャラリー画像が設定されていません。</p>
-              <?php endif; ?>
-      </div>
-    </section>
 
 <?php get_footer(); ?>

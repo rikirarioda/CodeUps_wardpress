@@ -25,7 +25,7 @@
         <div class="page-blog__wraps">
           <div class="page-blog__pagination-wrap">
           <!-- 投稿の日時を動的に表示 -->
-          <time class="page-blog__category page-blog-detail"><?php echo get_the_date(); ?></time>
+          <time class="page-blog__category page-blog-detail" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
 
           <!-- 投稿のタイトルを動的に表示 -->
           <h1 class="page-blog-detail__title"><?php the_title(); ?></h1>
@@ -40,9 +40,11 @@
           </div>
 
           <!-- 投稿の本文を動的に表示 -->
-          <div class="page-blog-detail__container">
-            <?php the_content(); ?>
-          </div>
+          <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <div class="page-blog-detail__container">
+              <?php the_content(); ?>
+            </div>
+          <?php endwhile;endif; ?>
 
           <!-- WP-PageNavi -->
           <nav class="page-blog-detail__pagination pagination">
@@ -54,7 +56,9 @@
         </div>
 
           <!-- アサイド -->
-          <?php get_sidebar(); ?>
+          <div class="page-blog__article">
+            <?php get_sidebar(); ?>
+          </div>
         </div>
       </div>
     </div>

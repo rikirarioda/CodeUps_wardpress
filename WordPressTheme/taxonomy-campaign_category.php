@@ -27,20 +27,20 @@
 
             <!-- 他のタクソノミー -->
             <?php
-            $terms = get_terms([
-              'taxonomy' => 'campaign_category', // タクソノミー名
-              'hide_empty' => true,           // 投稿がないタームを非表示
-            ]);
+              $terms = get_terms([
+                'taxonomy' => 'campaign_category', // タクソノミー名
+                'hide_empty' => true,              // 投稿がないタームを非表示
+              ]);
 
-            if (!empty($terms) && !is_wp_error($terms)) {
-              foreach ($terms as $term): ?>
-                <a 
-                  class="category-button__tab <?php if (is_tax('campaign_category', $term->slug)) echo 'is-active'; ?>" 
-                  href="<?php echo esc_url(get_term_link($term)); ?>">
-                  <?php echo esc_html($term->name); ?>
-                </a>
-              <?php endforeach;
-            }
+              if (!empty($terms) && !is_wp_error($terms)): 
+                foreach ($terms as $term): ?>
+                  <a 
+                    class="category-button__tab <?php if (is_tax('campaign_category', $term->slug)) echo 'is-active'; ?>" 
+                    href="<?php echo esc_url(get_term_link($term)); ?>">
+                    <?php echo esc_html($term->name); ?>
+                  </a>
+                <?php endforeach; 
+              endif;
             ?>
           </div>
         </div>
@@ -57,15 +57,15 @@
               </div>
               <div class="campaign__card-body campaign__card-body--page">
                 <div class="campaign__card-meta campaign__card-meta--page">
-                    <?php
-                      // 現在の投稿に紐付けられたタクソノミー 'campaign_category' の取得
-                      $terms = get_the_terms(get_the_ID(), 'campaign_category');
-                      if (!empty($terms) && !is_wp_error($terms)) {
-                        $term_name = $terms[0]->name;
-                      } else {
-                        $term_name = '未分類';
-                      }
-                      ?>
+                <?php
+                  // 現在の投稿に紐付けられたタクソノミー 'campaign_category' の取得
+                  $terms = get_the_terms(get_the_ID(), 'campaign_category');
+                  if (!empty($terms) && !is_wp_error($terms)):
+                    $term_name = $terms[0]->name;
+                  else:
+                    $term_name = '未分類';
+                  endif;
+                ?>
                     <p class="campaign__card-tag"><?php echo esc_html($term_name); ?></p>
                     <p class="campaign__card-category campaign__card-category--page"><?php the_title(); ?></p>
                 </div>
@@ -99,11 +99,9 @@
 
 <!-- WP-PageNavi -->
       <nav class="page-campaign__pagination pagination">
-          <?php 
-          if (function_exists('wp_pagenavi')) {
-              wp_pagenavi(); 
-          }
-          ?>
+            <?php if (function_exists('wp_pagenavi')): ?>
+              <?php wp_pagenavi(); ?>
+            <?php endif; ?>
       </nav>
 
 

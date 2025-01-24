@@ -29,27 +29,28 @@
 
             <!-- 他のタクソノミー -->
             <?php
-            $terms = get_terms([
-              'taxonomy' => 'voice_category', // タクソノミー名
-              'hide_empty' => true,           // 投稿がないタームを非表示
-            ]);
+              $terms = get_terms([
+                'taxonomy' => 'voice_category', // タクソノミー名
+                'hide_empty' => true,           // 投稿がないタームを非表示
+              ]);
+              ?>
 
-            if (!empty($terms) && !is_wp_error($terms)) {
-              foreach ($terms as $term): ?>
-                <a 
-                  class="category-button__tab <?php if (is_tax('voice_category', $term->slug)) echo 'is-active'; ?>" 
-                  href="<?php echo esc_url(get_term_link($term)); ?>">
-                  <?php echo esc_html($term->name); ?>
-                </a>
-              <?php endforeach;
-            }
-            ?>
+              <?php if (!empty($terms) && !is_wp_error($terms)): ?>
+                <?php foreach ($terms as $term): ?>
+                  <a 
+                    class="category-button__tab <?php if (is_tax('voice_category', $term->slug)) echo 'is-active'; ?>" 
+                    href="<?php echo esc_url(get_term_link($term)); ?>">
+                    <?php echo esc_html($term->name); ?>
+                  </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
           </div>
         </div>
 
-        <ul class="page-voice__cards voice-cards">
-          <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post(); ?>
+        <?php if (have_posts()): // 投稿がある場合のみセクションを表示 ?>
+          <ul class="page-voice__cards voice-cards">
+            <?php while (have_posts()): the_post(); ?>
               <li class="voice-cards__card voice-card">
                 <div href="<?php the_permalink(); ?>">
                   <div class="voice-card__item-content">
@@ -57,15 +58,14 @@
                       <div class="voice-card__items">
                         <div class="voice-card__wrap">
                           <p class="voice-card__item-information"><?php the_field('voice_1') ?></p>
-
                           <?php
-                          // 現在の投稿に紐付けられたタクソノミー 'voice_category' の取得
-                          $terms = get_the_terms(get_the_ID(), 'voice_category');
-                          if (!empty($terms) && !is_wp_error($terms)) {
-                            $term_name = $terms[0]->name;
-                          } else {
-                            $term_name = '未分類';
-                          }
+                            // 現在の投稿に紐付けられたタクソノミー 'voice_category' の取得
+                            $terms = get_the_terms(get_the_ID(), 'voice_category');
+                            if (!empty($terms) && !is_wp_error($terms)): 
+                              $term_name = $terms[0]->name;
+                            else: 
+                              $term_name = '未分類';
+                            endif;
                           ?>
                           <p class="voice-card__item-tag"><?php echo esc_html($term_name); ?></p>
                         </div>
@@ -78,24 +78,23 @@
                       </div>
                     </div>
                     <p class="voice-card__item-text">
-                      <?php
-                      if (!empty(get_post_meta(get_the_ID(), 'voice_card_text', true))) {
+                    <?php
+                      if (!empty(get_post_meta(get_the_ID(), 'voice_card_text', true))):
                         echo esc_html(get_post_meta(get_the_ID(), 'voice_card_text', true));
-                      } elseif (has_excerpt()) {
+                      elseif (has_excerpt()):
                         the_excerpt();
-                      } else {
+                      else:
                         the_content();
-                      }
-                      ?>
+                      endif;
+                    ?>
                     </p>
                   </div>
                 </div>
               </li>
             <?php endwhile; ?>
-          <?php else: ?>
-            <p>該当する投稿がありません。</p>
-          <?php endif; ?>
-        </ul>
+          </ul>
+        <?php endif; // 投稿がある場合のみセクションを表示 ?>
+
 
       </div>
     </div>
@@ -103,11 +102,9 @@
 
 <!-- WP-PageNavi -->
       <nav class="page-campaign__pagination pagination">
-          <?php 
-          if (function_exists('wp_pagenavi')) {
-              wp_pagenavi(); 
-          }
-          ?>
+            <?php if (function_exists('wp_pagenavi')): ?>
+              <?php wp_pagenavi(); ?>
+            <?php endif; ?>
       </nav>
 
 

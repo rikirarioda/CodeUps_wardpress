@@ -55,62 +55,49 @@
             </div>
           </div>
           <div class="campaign__swiper-wrap campaign-swiper js-campaign-swiper swiper">
-            <ul class="campaign__cards swiper-wrapper">
-              <?php
-              // カスタム投稿タイプ 'campaign' から投稿を取得
-              $args = [
-                'post_type'      => 'campaign',
-                'posts_per_page' => -1,
-                'post_status'    => 'publish',
-                'orderby'        => 'date',
-                'order'          => 'DESC',
-              ];
-              $campaign_query = new WP_Query($args);
+          <?php
+            // カスタム投稿タイプ 'campaign' から投稿を取得
+            $args = [
+              'post_type'      => 'campaign',
+              'posts_per_page' => -1,
+            ];
+            $campaign_query = new WP_Query($args);
 
-              if ($campaign_query->have_posts()) :
-                while ($campaign_query->have_posts()) : $campaign_query->the_post();
+            if ($campaign_query->have_posts()) : // 投稿が存在する場合のみセクションを出力 ?>
+              <ul class="campaign__cards swiper-wrapper">
+              <?php while ($campaign_query->have_posts()) : $campaign_query->the_post();
+                // 投稿に関連付けられている最初のタクソノミー情報を取得
+                $terms = get_the_terms(get_the_ID(), 'campaign_category');
+                $term_link = (!empty($terms) && !is_wp_error($terms)) ? get_term_link($terms[0]->term_id) : '#'; // タクソノミーリンク
               ?>
-                <li class="campaign__card swiper-slide">
-                  <?php
-                  // 投稿に関連付けられている最初のタクソノミー情報を取得
-                  $terms = get_the_terms(get_the_ID(), 'campaign_category');
-                  if (!empty($terms) && !is_wp_error($terms)) {
-                    $term_link = get_term_link($terms[0]->term_id); // 最初のタクソノミーのリンクを取得
-                  } else {
-                    $term_link = '#'; // タクソノミーがない場合のデフォルトリンク
-                  }
-                  ?>
-                  <a href="<?php echo esc_url($term_link); ?>">
-                    <div class="campaign__card-img">
-                      <?php if (has_post_thumbnail()) : ?>
-                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
-                      <?php else : ?>
-                        <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/no-image.jpg" alt="No Image">
-                      <?php endif; ?>
-                    </div>
-                    <div class="campaign__card-body">
-                      <div class="campaign__card-meta">
-                        <span class="campaign__card-tag"><?php echo !empty($terms) ? esc_html($terms[0]->name) : '未分類'; ?></span>
-                        <p class="campaign__card-category"><?php the_title(); ?></p>
+                  <li class="campaign__card swiper-slide">
+                    <a href="<?php echo esc_url($term_link); ?>">
+                      <div class="campaign__card-img">
+                        <?php if (has_post_thumbnail()) : ?>
+                          <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                        <?php else : ?>
+                          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/no-image.jpg" alt="No Image">
+                        <?php endif; ?>
                       </div>
-                      <div class="campaign__card-contents">
-                        <p class="campaign__card-title">全部コミコミ(お一人様)</p>
-                        <div class="campaign__card-price--body">
-                          <span class="campaign__card-original--price"><?php the_field('campaign_1'); ?></span>
-                          <span class="campaign__card-discounted--price"><?php the_field('campaign_2'); ?></span>
+                      <div class="campaign__card-body">
+                        <div class="campaign__card-meta">
+                          <span class="campaign__card-tag"><?php echo !empty($terms) ? esc_html($terms[0]->name) : '未分類'; ?></span>
+                          <p class="campaign__card-category"><?php the_title(); ?></p>
+                        </div>
+                        <div class="campaign__card-contents">
+                          <p class="campaign__card-title">全部コミコミ(お一人様)</p>
+                          <div class="campaign__card-price--body">
+                            <span class="campaign__card-original--price"><?php the_field('campaign_1'); ?></span>
+                            <span class="campaign__card-discounted--price"><?php the_field('campaign_2'); ?></span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
-                </li>
-              <?php
-                endwhile;
-                wp_reset_postdata();
-              else :
-              ?>
-                <p>キャンペーンがありません。</p>
-              <?php endif; ?>
-            </ul>
+                    </a>
+                  </li>
+                <?php endwhile; ?>
+                <?php wp_reset_postdata(); ?>
+              </ul>
+          <?php endif; ?>
           </div>
 
           <div class="campaign__button">
@@ -192,57 +179,53 @@
             <h2 class="title__sub title__sub--blog">ブログ</h2>
           </div>
         </div>
-        <ul class="blog__cards blog-cards">
-          <?php
+        <?php
           // 最新の3件を取得するクエリ
           $args = [
-            'post_type'      => 'post',   // 投稿タイプを指定
-            'posts_per_page' => 3,        // 最新3件を取得
-            'post_status'    => 'publish' // 公開された投稿のみ
+            'posts_per_page' => 3, // 最新3件を取得
           ];
           $blog_query = new WP_Query($args);
 
-          if ($blog_query->have_posts()) :
-            while ($blog_query->have_posts()) :
-              $blog_query->the_post(); 
+          if ($blog_query->have_posts()) : // 投稿が存在する場合のみセクションを出力
           ?>
-            <li class="blog-cards__card blog-card">
-              <a href="<?php the_permalink(); ?>">
-                <div class="blog-card__item-img">
-                  <?php if (has_post_thumbnail()) : ?>
-                    <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
-                  <?php else : ?>
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/no-image.jpg" alt="No Image">
-                  <?php endif; ?>
-                </div>
-                <div class="blog-card__item-content">
-                  <time class="blog-card__item-category"><?php echo get_the_date(); ?></time>
-                  <p class="blog-card__item-title"><?php the_title(); ?></p>
-                  <p class="blog-card__item-text">
-                    <?php 
-                    if (!empty(get_post_meta(get_the_ID(), 'custom_text_field', true))) {
-                      // カスタムフィールドがある場合
-                      echo esc_html(get_post_meta(get_the_ID(), 'custom_text_field', true));
-                    } elseif (has_excerpt()) {
-                      // 抜粋が設定されている場合
-                      echo get_the_excerpt();
-                    } else {
-                      // 投稿の冒頭部分を切り取る
-                      echo wp_trim_words(get_the_content(), 80, '...');
-                    }
-                    ?>
-                  </p>
-                </div>
-              </a>
-            </li>
+            <ul class="blog__cards blog-cards">
+              <?php while ($blog_query->have_posts()) : $blog_query->the_post(); ?>
+                <li class="blog-cards__card blog-card">
+                  <a href="<?php the_permalink(); ?>">
+                    <div class="blog-card__item-img">
+                      <?php if (has_post_thumbnail()) : ?>
+                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                      <?php else : ?>
+                        <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/no-image.jpg" alt="No Image">
+                      <?php endif; ?>
+                    </div>
+                    <div class="blog-card__item-content">
+                      <time class="blog-card__item-category" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
+                      <p class="blog-card__item-title"><?php the_title(); ?></p>
+                      <p class="blog-card__item-text">
+                      <?php 
+                        if (!empty(get_post_meta(get_the_ID(), 'custom_text_field', true))) :
+                          // カスタムフィールドがある場合
+                          echo esc_html(get_post_meta(get_the_ID(), 'custom_text_field', true));
+                        elseif (has_excerpt()) :
+                          // 抜粋が設定されている場合
+                          echo get_the_excerpt();
+                        else :
+                          // 投稿の冒頭部分を切り取る
+                          echo wp_trim_words(get_the_content(), 80, '...');
+                        endif;
+                        ?>
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              <?php endwhile; ?>
+            </ul>
           <?php
-            endwhile;
-            wp_reset_postdata(); // クエリのリセット
-          else :
+          endif; // 投稿がない場合はセクション全体を非表示にする
+          wp_reset_postdata(); // クエリのリセット
           ?>
-            <p>投稿がありません。</p>
-          <?php endif; ?>
-        </ul>
+
         <div class="blog__button">
           <a href="<?php echo esc_url(home_url('/blog')); ?>" class="button">View more<span></span></a>
         </div>
@@ -258,77 +241,67 @@
             <h2 class="title__sub">お客様の声</h2>
           </div>
         </div>
-        <ul class="voice__cards voice-cards">
-          <?php
-          // 最新の投稿2件を取得
+        <?php
+          // 投稿タイプ 'voice' の最新2件を取得
           $args = [
             'post_type'      => 'voice',   // 投稿タイプ 'voice'
             'posts_per_page' => 2,         // 表示件数を2件に制限
-            'post_status'    => 'publish', // 公開された投稿のみ
-            'orderby'        => 'date',    // 日付でソート
-            'order'          => 'DESC',    // 降順（新しい順）
           ];
           $voice_query = new WP_Query($args);
 
           if ($voice_query->have_posts()) :
-            while ($voice_query->have_posts()) : $voice_query->the_post();
           ?>
-            <li class="voice-cards__card voice-card">
-              <!-- アーカイブページへのリンクを設定 -->
-              <a href="<?php echo esc_url(get_post_type_archive_link('voice')); ?>">
-                <div class="voice-card__item-content">
-                  <div class="voice-card__box">
-                    <div class="voice-card__items">
-                      <div class="voice-card__wrap">
-                        <!-- 年齢・性別を表示 -->
-                        <p class="voice-card__item-information"><?php the_field('voice_1'); ?></p>
+          <ul class="voice__cards voice-cards">
+            <?php while ($voice_query->have_posts()) : $voice_query->the_post(); ?>
+              <li class="voice-cards__card voice-card">
+                <!-- アーカイブページへのリンクを設定 -->
+                <a href="<?php echo esc_url(get_post_type_archive_link('voice')); ?>">
+                  <div class="voice-card__item-content">
+                    <div class="voice-card__box">
+                      <div class="voice-card__items">
+                        <div class="voice-card__wrap">
+                          <!-- 年齢・性別を表示 -->
+                          <p class="voice-card__item-information"><?php the_field('voice_1'); ?></p>
 
-                        <?php
-                        // タクソノミー 'voice_category' の取得
-                        $terms = get_the_terms(get_the_ID(), 'voice_category');
-                        if (!empty($terms) && !is_wp_error($terms)) {
-                          $term_name = $terms[0]->name;
-                        } else {
-                          $term_name = '未分類';
-                        }
-                        ?>
-                        <p class="voice-card__item-tag"><?php echo esc_html($term_name); ?></p>
+                          <?php
+                          // タクソノミー 'voice_category' の取得
+                          $terms = get_the_terms(get_the_ID(), 'voice_category');
+                          $term_name = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : '未分類';
+                          ?>
+                          <p class="voice-card__item-tag"><?php echo esc_html($term_name); ?></p>
+                        </div>
+                        <!-- タイトルを表示 -->
+                        <p class="voice-card__item-title"><?php the_title(); ?></p>
                       </div>
-                      <!-- タイトルを表示 -->
-                      <p class="voice-card__item-title"><?php the_title(); ?></p>
+                      <!-- アイキャッチ画像を表示 -->
+                      <div class="voice-card__item-img colorbox js-colorbox">
+                        <?php if (has_post_thumbnail()) : ?>
+                          <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                        <?php else : ?>
+                          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/no-image.jpg" alt="No Image">
+                        <?php endif; ?>
+                      </div>
                     </div>
-                    <!-- アイキャッチ画像を表示 -->
-                    <div class="voice-card__item-img colorbox js-colorbox">
-                      <?php if (has_post_thumbnail()) : ?>
-                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
-                      <?php else : ?>
-                        <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/no-image.jpg" alt="No Image">
-                      <?php endif; ?>
-                    </div>
+                    <!-- 本文またはカスタムフィールドのテキストを表示 -->
+                    <p class="voice-card__item-text">
+                      <?php
+                      if (!empty(get_post_meta(get_the_ID(), 'voice_card_text', true))) :
+                        echo esc_html(get_post_meta(get_the_ID(), 'voice_card_text', true));
+                      elseif (has_excerpt()) :
+                        the_excerpt();
+                      else :
+                        echo wp_trim_words(get_the_content(), 300, '...');
+                      endif;
+                      ?>
+                    </p>
                   </div>
-                  <!-- 本文またはカスタムフィールドのテキストを表示 -->
-                  <p class="voice-card__item-text">
-                    <?php
-                    if (!empty(get_post_meta(get_the_ID(), 'voice_card_text', true))) {
-                      echo esc_html(get_post_meta(get_the_ID(), 'voice_card_text', true));
-                    } elseif (has_excerpt()) {
-                      the_excerpt();
-                    } else {
-                      echo wp_trim_words(get_the_content(), 300, '...');
-                    }
-                    ?>
-                  </p>
-                </div>
-              </a>
-            </li>
-          <?php
-            endwhile;
-            wp_reset_postdata();
-          else :
-          ?>
-            <p>お客様の声がまだありません。</p>
-          <?php endif; ?>
-        </ul>
+                </a>
+              </li>
+            <?php endwhile; ?>
+            <?php wp_reset_postdata(); ?>
+          </ul>
+        <?php endif; ?>
+
         <div class="voice__button">
           <a href="<?php echo esc_url(get_post_type_archive_link('voice')); ?>" class="button">View more<span></span></a>
         </div>

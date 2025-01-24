@@ -5,12 +5,8 @@
     <div class="page-404 layout-page-404">
       <div class="page-404__inner inner">
         <div class="breadcrumb">
-          <div class="breadcrumb_inner inner">
-    <!-- パンくず -->
-        <div class="breadcrumb breadcrumb__text--page404">
-          <?php get_template_part('parts/breadcrumb'); ?>
-        </div>
-          </div>
+          <!-- パンくず -->
+            <?php get_template_part('parts/breadcrumb'); ?>
         </div>
         <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/404-p-icon.svg" alt="鯨" class="page-404__img">
         <div class="page-404__content">

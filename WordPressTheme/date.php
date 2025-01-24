@@ -37,20 +37,20 @@
                     <?php endif; ?>
                   </div>
                   <div class="blog-card__item-content">
-                    <time class="blog-card__item-category"><?php echo get_the_date(); ?></time>
+                    <time class="blog-card__item-category" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
                     <p class="blog-card__item-title"><?php the_title(); ?></p>
                     <p class="blog-card__item-text">
-                      <?php 
-                      if (!empty(get_post_meta(get_the_ID(), 'custom_text_field', true))) {
+                    <?php 
+                      if (!empty(get_post_meta(get_the_ID(), 'custom_text_field', true))): 
                         // カスタムフィールドがある場合
                         echo esc_html(get_post_meta(get_the_ID(), 'custom_text_field', true));
-                      } elseif (has_excerpt()) {
+                      elseif (has_excerpt()): 
                         // 抜粋が設定されている場合
                         echo get_the_excerpt();
-                      } else {
+                      else: 
                         // 投稿の冒頭部分を切り取る
                         echo wp_trim_words(get_the_content(), 80, '...');
-                      }
+                      endif;
                       ?>
                     </p>
                   </div>
@@ -62,11 +62,9 @@
 
                     <!-- WP-PageNavi -->
               <nav class="page-campaign__pagination pagination">
-                <?php 
-                  if (function_exists('wp_pagenavi')) {
-                    wp_pagenavi(); 
-                  }
-                ?>
+                <?php if (function_exists('wp_pagenavi')): ?>
+                  <?php wp_pagenavi(); ?>
+                <?php endif; ?>
               </nav>
           </div>
 

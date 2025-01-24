@@ -15,17 +15,17 @@
 
 
     <!-- パンくず -->
-  <?php get_template_part('parts/breadcrumb') ?>
+    <?php get_template_part('parts/breadcrumb') ?>
 
     <!-- faq -->
-    <div class="page-faq layout-page-faq">
-      <div class="page-faq__inner inner fish-image">
-        <div class="page-faq__accordion accordion js-accordion-list">
-          <?php 
-          // SCFの繰り返しフィールドを取得
-          $faq_items = SCF::get('faq_1'); // 繰り返しグループ名: faq_1
-          ?>
-          <?php if (!empty($faq_items)): ?>
+    <?php // SCFの繰り返しフィールドを取得
+        $faq_items = SCF::get('faq_1'); // 繰り返しグループ名: faq_1
+    ?>
+
+    <?php if (!empty($faq_items)): // FAQ項目が存在する場合のみセクションを表示 ?>
+      <div class="page-faq layout-page-faq">
+        <div class="page-faq__inner inner fish-image">
+          <div class="page-faq__accordion accordion js-accordion-list">
             <?php foreach ($faq_items as $faq): ?>
               <div class="accordion__item js-accordion-item">
                 <h3 class="accordion__title js-accordion-title">
@@ -38,12 +38,11 @@
                 </div>
               </div>
             <?php endforeach; ?>
-          <?php else: ?>
-            <p>現在、FAQは設定されていません。</p>
-          <?php endif; ?>
+          </div>
         </div>
       </div>
-    </div>
+    <?php endif; // セクション表示条件終了 ?>
+
 
 
 

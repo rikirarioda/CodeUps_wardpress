@@ -216,7 +216,7 @@
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/Blog-1.jpg" alt="イソギンチャク">
               </div>
               <div class="blog-card__item-content">
-                <time class="blog-card__item-category">2023.11/17</time>
+                <time class="blog-card__item-category" datetime="<?php echo get_the_date('c'); ?>">2023.11/17</time>
                 <p class="blog-card__item-title">ライセンス取得</p>
                 <p class="blog-card__item-text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
                     ここにテキストが入ります。ここにテキストが入ります。ここにテキスト</p>
@@ -229,7 +229,7 @@
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/Blog-2.jpg" alt="ウミガメ">
               </div>
               <div class="blog-card__item-content">
-                <time class="blog-card__item-category">2023.11/17</time>
+                <time class="blog-card__item-category" datetime="<?php echo get_the_date('c'); ?>">2023.11/17</time>
                 <p class="blog-card__item-title">ウミガメと泳ぐ</p>
                 <p class="blog-card__item-text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
                     ここにテキストが入ります。ここにテキストが入ります。ここにテキスト</p>
@@ -242,7 +242,7 @@
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/blog-3.jpg" alt="カクレクマノミ">
               </div>
               <div class="blog-card__item-content">
-                <time class="blog-card__item-category">2023.11/17</time>
+                <time class="blog-card__item-category" datetime="<?php echo get_the_date('c'); ?>">2023.11/17</time>
                 <p class="blog-card__item-title">カクレクマノミ</p>
                 <p class="blog-card__item-text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
                     ここにテキストが入ります。ここにテキストが入ります。ここにテキスト</p>

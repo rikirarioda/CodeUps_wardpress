@@ -58,12 +58,12 @@
                   ));
 
                   // 取得したカテゴリが存在する場合、リンクを生成
-                  if (!empty($terms) && !is_wp_error($terms)) {
-                    foreach ($terms as $term) {
+                  if (!empty($terms) && !is_wp_error($terms)):
+                    foreach ($terms as $term):
                       // 各カテゴリのリンクを出力
                       echo '<a href="' . esc_url(get_term_link($term)) . '" class="footer-link__detail">' . esc_html($term->name) . '</a>';
-                    }
-                  }
+                  endforeach;
+                endif;
                 ?>
               </div>
             </div>

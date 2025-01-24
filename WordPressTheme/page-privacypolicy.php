@@ -21,10 +21,10 @@
     <section class="page-privacypolicy layout-page-privacypolicy">
       <div class="page-privacypolicy__inner inner fish-image">
         <h2 class="page-privacypolicy__title"><?php the_title(); ?></h2>
-            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-          <div class="page-privacypolicy__box">
-              <?php the_content(); ?>
-          </div>
+          <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <div class="page-privacypolicy__box">
+               <?php the_content(); ?>
+            </div>
           <?php endwhile;endif; ?>
       </div>
     </section>

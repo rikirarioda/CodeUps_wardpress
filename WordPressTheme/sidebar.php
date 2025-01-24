@@ -1,6 +1,6 @@
 
     <!-- 人気記事 -->
-          <aside class="page-blog__article article">
+          <aside class="article">
             <div class="article__content">
               <div class="article__wrap label">
                 <div class="label__title">
@@ -12,11 +12,7 @@
                   <?php
                   // 最新3件の投稿を取得
                   $args = [
-                    'post_type'      => 'post',   // 通常の投稿
                     'posts_per_page' => 3,       // 表示件数を3件に制限
-                    'post_status'    => 'publish', // 公開済みの投稿のみ
-                    'orderby'        => 'date',  // 日付でソート
-                    'order'          => 'DESC',  // 降順（新しい順）
                   ];
                   $popular_posts = new WP_Query($args);
 
@@ -34,7 +30,7 @@
                             <?php endif; ?>
                           </div>
                           <div class="article-card__content">
-                            <time class="article-card__category"><?php echo get_the_date(); ?></time>
+                            <time class="article-card__category" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
                             <p class="article-card__title"><?php the_title(); ?></p>
                           </div>
                         </div>
@@ -65,7 +61,6 @@
               $args = [
                 'post_type'      => 'voice',   // 投稿タイプ 'voice'
                 'posts_per_page' => 1,         // 最新1件を取得
-                'post_status'    => 'publish', // 公開された投稿のみ
               ];
               $voice_query = new WP_Query($args);
 
@@ -107,7 +102,6 @@
                 $args = [
                   'post_type'      => 'campaign', // 投稿タイプ 'campaign'
                   'posts_per_page' => 2,          // 2件取得
-                  'post_status'    => 'publish',  // 公開された投稿のみ
                 ];
                 $campaign_query = new WP_Query($args);
 
@@ -125,15 +119,15 @@
                       </div>
                       <div class="campaign__card-body campaign__card-body--blog">
                         <div class="campaign__card-meta">
-                          <?php
+                        <?php
                           // 現在の投稿に紐付けられたタクソノミー 'campaign_category' の取得
                           $terms = get_the_terms(get_the_ID(), 'campaign_category');
-                          if (!empty($terms) && !is_wp_error($terms)) {
+                          if (!empty($terms) && !is_wp_error($terms)): 
                             $term_name = $terms[0]->name;
-                          } else {
+                          else: 
                             $term_name = '未分類';
-                          }
-                          ?>
+                          endif;
+                        ?>
                           <p class="campaign__card-category campaign__card-category--blog"><?php echo esc_html($term_name); ?></p>
                         </div>
                         <div class="campaign__card-contents campaign__card-contents--blog">

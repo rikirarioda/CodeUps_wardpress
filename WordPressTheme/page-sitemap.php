@@ -31,7 +31,7 @@
                     </a>
                     <div class="page-sitemap-link__details">
                     <?php
-                    //　カスタム投稿タイプ『campaign』にカテゴリ(タクソノミー)が追加される度に、そのタクソノミーの一覧ページへのリンクが生成されるようにする。
+                      // カスタム投稿タイプ『campaign』にカテゴリ(タクソノミー)が追加される度に、そのタクソノミーの一覧ページへのリンクが生成されるようにする。
                       // カスタムタクソノミーのカテゴリを取得
                       $terms = get_terms(array(
                         'taxonomy' => 'campaign_category',
@@ -39,13 +39,14 @@
                       ));
 
                       // 取得したカテゴリが存在する場合、リンクを生成
-                      if (!empty($terms) && !is_wp_error($terms)) {
-                        foreach ($terms as $term) {
+                      if (!empty($terms) && !is_wp_error($terms)): 
+                        foreach ($terms as $term): 
                           // 各カテゴリのリンクを出力
                           echo '<a href="' . esc_url(get_term_link($term)) . '" class="footer-link__detail">' . esc_html($term->name) . '</a>';
-                        }
-                      }
+                        endforeach; 
+                      endif;
                     ?>
+
                     </div>
                   </div>
                   <div class="page-sitemap__link page-sitemap-link">
