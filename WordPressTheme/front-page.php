@@ -2,34 +2,65 @@
 
   <main>
     <!-- メインビュー -->
+
+
     <div class="mv js-mv">
       <div class="mv__inner">
         <div class="mv__slider swiper js-main-swiper">
           <div class="swiper-wrapper">
-            <!-- 繰り返し -->
-            <?php $fields = SCF::get('top-page'); ?>
-            <?php if (!empty($fields)): ?>
-              <?php foreach ($fields as $field): ?>
-                <div class="swiper-slide">
-                  <picture>
-                    <!-- PC版の画像 -->
-                    <?php if (!empty($field['mv-image-pc'])): ?>
-                      <source srcset="<?php echo wp_get_attachment_url($field['mv-image-pc']); ?>" media="(min-width: 1025px)">
-                    <?php endif; ?>
-                    <!-- SP版の画像 -->
-                    <?php if (!empty($field['mv-image-sp'])): ?>
-                      <img src="<?php echo wp_get_attachment_url($field['mv-image-sp']); ?>" alt="<?php echo esc_attr($field['alt-text'] ?: 'MV'); ?>">
-                    <?php else: ?>
-                      <!-- SP版画像がない場合 -->
-                      <img src="<?php echo esc_url(get_theme_file_uri('img/dummy.jpg')); ?>" alt="ダミー画像">
-                    <?php endif; ?>
-                  </picture>
-                </div>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <p>スライダー画像が設定されていません。</p>
+            <?php 
+            // ACFのグループフィールドからデータを取得
+            $pc_group = get_field('mv_image_pc'); // PC画像グループ
+            $sp_group = get_field('mv_image_sp'); // SP画像グループ
+
+            // フィールド名リスト
+            $pc_fields = ['top_1', 'top_2', 'top_3', 'top_4'];
+            $sp_fields = ['top_1sp', 'top_2sp', 'top_3sp', 'top_4sp'];
+
+            // スライド用の配列
+            $slides = [];
+
+            // PC画像とSP画像を対応させてスライドを作成
+            if (!empty($pc_group) && is_array($pc_group)) {
+                foreach ($pc_fields as $index => $pc_field) {
+                    // PC画像の処理
+                    $pc_image_url = $pc_group[$pc_field] ?? '';
+
+                    // SP画像の処理
+                    $sp_image_url = $sp_group[$sp_fields[$index]] ?? '';
+
+                    // SP画像がない場合はPC画像を代用
+                    if (empty($sp_image_url)) {
+                        $sp_image_url = $pc_image_url;
+                    }
+
+                    // 画像が1つでもある場合、スライドを追加
+                    if (!empty($pc_image_url)) {
+                        $slides[] = [
+                            'pc' => $pc_image_url,
+                            'sp' => $sp_image_url,
+                        ];
+                    }
+                }
+            }
+
+            // スライドが1つ以上ある場合のみ表示
+            if (!empty($slides)) :
+              foreach ($slides as $slide) :
+            ?>
+              <div class="swiper-slide">
+                <picture>
+                  <!-- PC版の画像 -->
+                  <source srcset="<?php echo esc_url($slide['pc']); ?>" media="(min-width: 1025px)">
+                  <!-- SP版の画像（なければPC画像を代用） -->
+                  <img src="<?php echo esc_url($slide['sp']); ?>" alt="">
+                </picture>
+              </div>
+            <?php 
+              endforeach;
+            else : ?>
+              <p style="color: red; font-weight: bold;">スライダー画像が設定されていません。</p>
             <?php endif; ?>
-            <!-- /繰り返し -->
           </div>
 
           <div class="mv__title-wrap">
@@ -39,6 +70,7 @@
         </div>
       </div>
     </div>
+
 
 
     <!-- Campaign -->
@@ -87,8 +119,28 @@
                         <div class="campaign__card-contents">
                           <p class="campaign__card-title">全部コミコミ(お一人様)</p>
                           <div class="campaign__card-price--body">
-                            <span class="campaign__card-original--price"><?php the_field('campaign_1'); ?></span>
-                            <span class="campaign__card-discounted--price"><?php the_field('campaign_2'); ?></span>
+                            <?php
+                            // グループフィールド「campaign_6」内のデータを取得
+                            $campaign_6 = get_field('campaign_6');
+
+                            // グループフィールド内の「campaign_1」と「campaign_2」を取得
+                            $original_price = $campaign_6['campaign_1']; // 通常価格
+                            $discounted_price = $campaign_6['campaign_2']; // 割引価格
+                            ?>
+
+                            <!-- 通常価格を表示 -->
+                            <?php if ($original_price): ?>
+                              <span class="campaign__card-original--price">
+                                &yen;<?php echo esc_html(number_format($original_price)); ?>
+                              </span>
+                            <?php endif; ?>
+
+                            <!-- 割引価格を表示 -->
+                            <?php if ($discounted_price): ?>
+                              <span class="campaign__card-discounted--price">
+                                &yen;<?php echo esc_html(number_format($discounted_price)); ?>
+                              </span>
+                            <?php endif; ?>
                           </div>
                         </div>
                       </div>

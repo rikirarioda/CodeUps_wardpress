@@ -55,14 +55,28 @@ span.wpcf7-spinner {
   border: rem(1) solid $green;
 }
 
-.wpcf7-form-control.wpcf7-submit.has-spinner:hover::after {
-  transform: scale(1, 1); /* ホバー時に背景全体を覆う */
+//コンタクトホームボタン
+/* ホバー時のボタン文字色 */
+.page-contact__button .button:hover {
+  color: $green;
 }
 
-.wpcf7-list-item {
-  display: block;
+/* ボタン内のinputのデフォルトスタイル */
+.page-contact__button .button input.wpcf7-form-control.wpcf7-submit {
+  color: inherit; /* ボタン全体の色を継承 */
 }
 
-.wpcf7-list-item-label:not(:first-child) {
-  margin-top: rem(15);
+/* ホバー時の疑似要素の変化 */
+.page-contact__button .button:hover::after {
+  transform: scale(1, 1);
+}
+
+/* スピナーを非表示 */
+.page-contact__button .button .wpcf7-spinner {
+  display: none;
+}
+
+/* ホバー時の矢印アイコンの色 */
+.page-contact__button .button:hover span:last-child {
+  background: $green;
 }
